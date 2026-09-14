@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Resume Analyzer</h1>
+        <p>Compare your resume against a job description using transparent skill matching.</p>
+      </header>
+
+      <main class="panel">
+        <form id="resume-form">
+          <div class="field-group">
+            <label for="resume-file">Upload Resume (PDF)</label>
+            <input id="resume-file" type="file" accept=".pdf" required />
+          </div>
+
+          <div class="field-group">
+            <label for="job-description">Job Description</label>
+            <textarea id="job-description" rows="8" placeholder="Paste the target job description here..." required></textarea>
+          </div>
+
+          <button id="analyze-button" type="submit">Analyze Resume</button>
+        </form>
+
+        <div id="status" class="status" aria-live="polite"></div>
+
+        <section id="results" class="results hidden">
+          <div class="score-box">
+            <span class="score-label">Resume-JD Match Score</span>
+            <div id="match-score" class="score-value">0%</div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <h3>Matched Skills</h3>
+              <ul id="matched-skills" class="list"></ul>
+            </div>
+            <div class="card">
+              <h3>Missing Skills</h3>
+              <ul id="missing-skills" class="list"></ul>
+            </div>
+            <div class="card">
+              <h3>Strengths</h3>
+              <ul id="strengths" class="list"></ul>
+            </div>
+            <div class="card">
+              <h3>Improvement Areas</h3>
+              <ul id="improvement-areas" class="list"></ul>
+            </div>
+          </div>
+
+          <div class="card full-width">
+            <h3>Suggestions</h3>
+            <ul id="suggestions" class="list"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
