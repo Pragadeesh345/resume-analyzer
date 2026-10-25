@@ -3,60 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume Analyzer</title>
+    <title>AI Resume Analyzer</title>
+    <!-- Modern Tech Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
+    <!-- Tech Grid Background -->
+    <div class="bg-grid"></div>
+
     <div class="container">
       <header class="header">
-        <h1>Resume Analyzer</h1>
-        <p>Compare your resume against a job description using transparent skill matching.</p>
+        <h1>Resume <span class="accent-text">Analyzer</span></h1>
+        <p>Evaluate your resume against job requirements with precision matching.</p>
       </header>
 
       <main class="panel">
         <form id="resume-form">
+          
           <div class="field-group">
-            <label for="resume-file">Upload Resume (PDF)</label>
-            <input id="resume-file" type="file" accept=".pdf" required />
+            <label>Upload Resume (PDF)</label>
+            <div class="file-upload-wrapper">
+              <input id="resume-file" type="file" accept=".pdf" required hidden />
+              <label for="resume-file" class="file-upload-box" id="drop-zone">
+                <i class="fas fa-file-pdf"></i>
+                <span id="file-name">Select or drop your PDF here</span>
+              </label>
+            </div>
           </div>
 
           <div class="field-group">
-            <label for="job-description">Job Description</label>
-            <textarea id="job-description" rows="8" placeholder="Paste the target job description here..." required></textarea>
+            <label for="job-description">Target Job Description</label>
+            <textarea id="job-description" placeholder="Paste the job requirements here..." required></textarea>
           </div>
 
-          <button id="analyze-button" type="submit">Analyze Resume</button>
+          <button id="analyze-button" type="submit">
+            <span class="btn-text">Initialize Analysis</span>
+            <i class="fas fa-microchip"></i>
+          </button>
         </form>
 
         <div id="status" class="status" aria-live="polite"></div>
 
         <section id="results" class="results hidden">
-          <div class="score-box">
-            <span class="score-label">Resume-JD Match Score</span>
-            <div id="match-score" class="score-value">0%</div>
+          <div class="score-container">
+            <div class="score-box">
+              <span class="score-label">Match Probability</span>
+              <!-- Dynamic Circular Progress Ring -->
+              <div class="score-circle" id="score-circle">
+                <div class="score-inner">
+                  <div id="match-score" class="score-value">0%</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="grid">
-            <div class="card">
-              <h3>Matched Skills</h3>
+            <div class="card success-card">
+              <div class="card-header">
+                <i class="fas fa-check"></i>
+                <h3>Matched Skills</h3>
+              </div>
               <ul id="matched-skills" class="list"></ul>
             </div>
-            <div class="card">
-              <h3>Missing Skills</h3>
+            
+            <div class="card danger-card">
+              <div class="card-header">
+                <i class="fas fa-xmark"></i>
+                <h3>Missing Skills</h3>
+              </div>
               <ul id="missing-skills" class="list"></ul>
             </div>
-            <div class="card">
-              <h3>Strengths</h3>
+
+            <div class="card info-card">
+              <div class="card-header">
+                <i class="fas fa-arrow-trend-up"></i>
+                <h3>Strengths</h3>
+              </div>
               <ul id="strengths" class="list"></ul>
             </div>
-            <div class="card">
-              <h3>Improvement Areas</h3>
+
+            <div class="card warning-card">
+              <div class="card-header">
+                <i class="fas fa-triangle-exclamation"></i>
+                <h3>Improvement Areas</h3>
+              </div>
               <ul id="improvement-areas" class="list"></ul>
             </div>
           </div>
 
-          <div class="card full-width">
-            <h3>Suggestions</h3>
+          <div class="card primary-card full-width">
+            <div class="card-header">
+              <i class="fas fa-terminal"></i>
+              <h3>Actionable Suggestions</h3>
+            </div>
             <ul id="suggestions" class="list"></ul>
           </div>
         </section>
